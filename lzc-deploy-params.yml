@@ -1,0 +1,53 @@
+params:
+  - id: sub_url
+    type: string
+    name: "Subscription URL"
+    description: "Proxy subscription URL for auto-updating rules (leave empty to use manual config)"
+    optional: true
+    default_value: ""
+
+  - id: secret
+    type: secret
+    name: "Dashboard Secret"
+    description: "Dashboard API secret for authentication"
+    default_value: "clash123"
+    optional: true
+
+  - id: sub_cron
+    type: string
+    name: "Subscription Cron"
+    description: "Cron expression for subscription auto-update (default: every 6 hours)"
+    default_value: "0 */6 * * *"
+    optional: true
+
+  - id: allow_lan
+    type: bool
+    name: "Allow LAN"
+    description: "Allow LAN clients to use the proxy service"
+    default_value: "true"
+    optional: true
+
+  - id: tz
+    type: string
+    name: "Timezone"
+    description: "Container timezone (e.g., Asia/Shanghai, UTC)"
+    default_value: "Asia/Shanghai"
+    optional: true
+
+locales:
+  zh:
+    sub_url:
+      name: "订阅地址"
+      description: "用于自动更新规则的代理订阅地址（留空使用手动配置）"
+    secret:
+      name: "仪表盘密钥"
+      description: "仪表盘 API 访问密钥"
+    sub_cron:
+      name: "订阅更新周期"
+      description: "订阅自动更新的 Cron 表达式（默认每6小时）"
+    allow_lan:
+      name: "允许局域网"
+      description: "允许局域网设备使用代理服务"
+    tz:
+      name: "时区"
+      description: "容器时区设置（如 Asia/Shanghai、UTC）"

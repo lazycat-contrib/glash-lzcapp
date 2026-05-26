@@ -1,0 +1,22 @@
+package: community.lazycat.app.glash
+version: 2.1.6
+name: Glash
+description: "Mihomo-based proxy service with web dashboard, supporting HTTP/SOCKS5 proxy and subscription auto-update"
+min_os_version: 1.5.0
+author: gangz1o
+homepage: https://hub.docker.com/r/gangz1o/glash
+license: MIT
+
+permissions:
+  required:
+    - net.internet
+
+locales:
+  zh:
+    name: "Glash"
+    description: "基于 Mihomo 的代理服务，支持 HTTP/SOCKS5 代理和订阅自动更新"
+    entries.main.title: "控制面板"
+  en:
+    name: "Glash"
+    description: "Mihomo-based proxy service with HTTP/SOCKS5 proxy and subscription auto-update"
+    entries.main.title: "Dashboard"
