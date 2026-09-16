@@ -1,16 +1,14 @@
 package: community.lazycat.app.glash
-version: 2.1.6
+version: 2.2.5
 name: Glash
 description: "Mihomo-based proxy service with web dashboard, supporting HTTP/SOCKS5 proxy and subscription auto-update"
 min_os_version: 1.5.0
 author: gangz1o
 homepage: https://hub.docker.com/r/gangz1o/glash
 license: MIT
-
 permissions:
   required:
     - net.internet
-
 locales:
   zh:
     name: "Glash"

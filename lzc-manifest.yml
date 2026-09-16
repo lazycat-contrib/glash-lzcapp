@@ -9,11 +9,10 @@ application:
       backend: http://host.lzcapp:9090/
   public_path:
     - /
-
 services:
   glash:
-    # upstream: gangz1o/glash:2.1.6
-    image: docker.1ms.run/gangz1o/glash:2.1.6
+    # upstream: gangz1o/glash:2.2.5
+    image: docker.1ms.run/gangz1o/glash:2.2.5
     healthcheck:
       disable: true
     network_mode: host
