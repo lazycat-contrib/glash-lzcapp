@@ -12,6 +12,7 @@ application:
 
 services:
   glash:
+    # upstream: gangz1o/glash:2.1.6
     image: docker.1ms.run/gangz1o/glash:2.1.6
     healthcheck:
       disable: true
