@@ -9,9 +9,16 @@ on:
       - .github/lazycat-action.yml
       - .github/workflows/lazycat.yml
       - lzc-build.yml
+      - lzc-deploy-params.yml
       - lzc-manifest.yml
       - package.yml
   workflow_dispatch:
+    inputs:
+      version:
+        description: "强制构建的版本（留空则自动检查上游镜像；删除旧版本后可填当前版本重新发布）"
+        type: string
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -25,6 +32,7 @@ jobs:
       config: .github/lazycat-action.yml
       dry-run: ${{ github.event_name == 'pull_request' }}
       versioned-release-asset: true
+      version: ${{ inputs.version }}
     secrets:
       APPSTORE_URL: ${{ secrets.APPSTORE_URL }}
       APPSTORE_TOKEN: ${{ secrets.APPSTORE_TOKEN }}

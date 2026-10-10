@@ -1,14 +1,35 @@
 application:
   subdomain: glash
+  # 代理服务需要常驻后台运行（对齐 v2raya / daed 等同类应用）
+  background_task: true
   entries:
     - id: main
       title: "Dashboard"
       path: /ui/
   upstreams:
     - location: /
+      # 路径原样转发：mihomo 的面板固定在 /ui/ 下
+      disable_trim_location: true
       backend: http://host.lzcapp:9090/
   public_path:
     - /
+  injects:
+    # 打开应用默认落在根路径，mihomo 对根路径返回 404（面板在 /ui/ 下）；
+    # 这里把根路径的错误响应改写为跳转到面板
+    - id: root-redirect
+      on: response
+      auth_required: false
+      when:
+        - /
+      do:
+        - src: |
+            try {
+              if (ctx.status >= 400) {
+                ctx.response.send(303, "", { location: "/ui/" });
+              }
+            } catch (error) {
+              console.log("root-redirect:", error);
+            }
 services:
   glash:
     # upstream: gangz1o/glash:2.2.7
@@ -24,3 +45,16 @@ services:
       - ALLOW_LAN={{.U.allow_lan}}
     binds:
       - /lzcapp/var/config:/root/.config/mihomo
+usage: |
+  Glash 是基于 Mihomo 内核的代理服务，自带 MetacubexD 控制面板（打开应用会自动跳转到面板）。
+
+  【首次进入面板】后端地址保留默认（自动使用当前域名）；密钥填安装时设置（或默认
+  clash123）的「仪表盘密钥」。建议在安装向导里改成自己的密钥。
+
+  【代理端口】HTTP 7890 / SOCKS5 7891 / 混合 7892，默认允许局域网使用：
+  在需要代理的设备上填写「微服设备 IP + 对应端口」即可。
+
+  【订阅】安装时填写的订阅地址会在启动时下载，并按「订阅更新周期」自动刷新；
+  未填订阅时使用手动配置。
+
+  【数据】配置与订阅缓存保存在 /lzcapp/var/config，应用升级/重装不丢失。
