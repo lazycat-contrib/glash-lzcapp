@@ -32,8 +32,8 @@ application:
             }
 services:
   glash:
-    # upstream: gangz1o/glash:2.2.7
-    image: docker.1ms.run/gangz1o/glash:2.2.7
+    # upstream: gangz1o/glash:2.2.8
+    image: docker.1ms.run/gangz1o/glash:2.2.8
     healthcheck:
       disable: true
     network_mode: host
